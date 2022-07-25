@@ -1,6 +1,11 @@
 const express = require("express");
+const db = require("./database/database");
 
 const app = express();
+
+// Db connection
+db();
+//app.use(cors())
 
 // Settings
 app.set("port", process.env.PORT || 3000);

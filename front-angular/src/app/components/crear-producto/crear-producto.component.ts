@@ -1,8 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-producto',
@@ -13,7 +13,7 @@ export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private router:Router
+    private router:Router,private toastr: ToastrService
     ) {
     this.productoForm = this.fb.group({
       producto: ['', Validators.required],
@@ -33,6 +33,7 @@ export class CrearProductoComponent implements OnInit {
       precio: this.productoForm.get('precio')?.value,
     };
     console.log(PRODUCTO);
+    this.toastr.success('Success', 'Guardado');
     this.router.navigate(['/']);
     
   }

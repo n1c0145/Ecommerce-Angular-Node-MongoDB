@@ -1,12 +1,13 @@
 const express = require("express");
 const db = require("./database/database");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
 
 // Db connection
 db();
-//app.use(cors())
+
 
 // Settings
 app.set("port", process.env.PORT || 3000);
@@ -14,6 +15,7 @@ app.set("port", process.env.PORT || 3000);
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors())
 
 // Routes
 app.use('/api/productos', require('./routes/producto'));

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Producto = require("../models/Producto");
 
 //Crear producto
 router.post("/", async (req, res) => {
@@ -9,7 +10,76 @@ router.post("/", async (req, res) => {
     res.send(producto);
   } catch (error) {
     console.log(error);
-    resizeBy.status(500).send("Error");
+    res.status(500).send("Error");
+  }
+});
+
+// Obtener productos
+
+router.get("/", async (req, res) => {
+  try {
+    const productos = await Producto.find();
+    res.json(productos);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error");
+  }
+});
+
+//Actualizar productos
+
+router.put("/:id", async (req, res) => {
+  try {
+    const { nombre, categoria, ubicacion, precio } = req.body;
+    let producto = await Producto.findById(req.params.id);
+    if (!producto) {
+      res.status(404).json({ msg: "No existe el producto" });
+    }
+    producto.nombre = nombre;
+    producto.categoria = categoria;
+    producto.ubicacion = ubicacion;
+    producto.precio = precio;
+
+    producto = await Producto.findOneAndUpdate(
+      { _id: req.params.id },
+      producto,
+      { new: true }
+    );
+    res.json(producto);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error");
+  }
+});
+
+//Obtener un producto
+
+router.get("/:id", async (req, res) => {
+  try {
+    let producto = await Producto.findById(req.params.id);
+    if (!producto) {
+      res.status(404).json({ msg: "No existe el producto" });
+    }
+    res.json(producto);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error");
+  }
+});
+
+//Eliminar Producto
+
+router.delete("/:id", async (req, res) => {
+  try {
+    let producto = await Producto.findById(req.params.id);
+    if (!producto) {
+      res.status(404).json({ msg: "No existe el producto" });
+    }
+    await Producto.findOneAndRemove({ _id: req.params.id });
+    res.json({ msg: "Eliminado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error");
   }
 });
 

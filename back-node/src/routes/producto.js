@@ -7,7 +7,8 @@ router.post("/", async (req, res) => {
   try {
     let producto = new Producto(req.body);
     await producto.save();
-    res.send(producto);
+    res.status(201);
+    res.json({ status: "Created" });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error");
@@ -45,7 +46,8 @@ router.put("/:id", async (req, res) => {
       producto,
       { new: true }
     );
-    res.json(producto);
+    res.status(200);
+    res.json({ status: "Updated" });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error");
@@ -60,6 +62,7 @@ router.get("/:id", async (req, res) => {
     if (!producto) {
       res.status(404).json({ msg: "No existe el producto" });
     }
+    res.status(200);
     res.json(producto);
   } catch (error) {
     console.log(error);
@@ -76,8 +79,8 @@ router.delete("/:id", async (req, res) => {
       res.status(404).json({ msg: "No existe el producto" });
     }
     await Producto.findOneAndRemove({ _id: req.params.id });
-    res.json({ msg: "Eliminado" });
-  } catch (error) {
+    res.status(200);
+    res.json({ status: "Deleted" });  } catch (error) {
     console.log(error);
     res.status(500).send("Error");
   }

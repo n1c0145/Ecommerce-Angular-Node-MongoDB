@@ -17,7 +17,10 @@ app.set("port", process.env.PORT || 3000);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000','http://localhost:4200']
+}))
 
 // Routes
 app.use('/api/productos', require('./routes/producto'));

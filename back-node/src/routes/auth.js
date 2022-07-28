@@ -74,4 +74,13 @@ router.get("/user", async (req, res) => {
   }
 });
 
+//Logout remove the cookie
+router.post('/logout', (req, res) => {
+    res.cookie('jwt', '', {maxAge: 0})
+
+    res.send({
+        message: 'success'
+    })
+})
+
 module.exports = router;

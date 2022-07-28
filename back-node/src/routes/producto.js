@@ -10,8 +10,7 @@ router.post("/", async (req, res) => {
     res.status(201);
     res.json({ status: "Created" });
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Error");
+    res.status(500).send({message:'error'});
   }
 });
 
@@ -22,8 +21,7 @@ router.get("/", async (req, res) => {
     const productos = await Producto.find();
     res.json(productos);
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Error");
+    res.status(500).send({message:'error'});
   }
 });
 
@@ -49,8 +47,7 @@ router.put("/:id", async (req, res) => {
     res.status(200);
     res.json({ status: "Updated" });
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Error");
+    res.status(500).send({message:'error'});
   }
 });
 
@@ -65,8 +62,7 @@ router.get("/:id", async (req, res) => {
     res.status(200);
     res.json(producto);
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Error");
+    res.status(500).send({message:'error'});
   }
 });
 
@@ -81,8 +77,7 @@ router.delete("/:id", async (req, res) => {
     await Producto.findOneAndRemove({ _id: req.params.id });
     res.status(200);
     res.json({ status: "Deleted" });  } catch (error) {
-    console.log(error);
-    res.status(500).send("Error");
+    res.status(500).send({message:'error'});
   }
 });
 

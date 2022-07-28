@@ -1,10 +1,16 @@
+import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
-import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
+import { CrearProductoComponent } from './productos/crear-producto/crear-producto.component';
+import { ListarProductosComponent } from './productos/listar-productos/listar-productos.component';
 
 const routes: Routes = [
-  { path: '', component: ListarProductosComponent },
+  {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent},
+  { path: 'listar-producto', component: ListarProductosComponent },
   { path: 'crear-producto', component: CrearProductoComponent },
   { path: 'editar-producto/:id', component: CrearProductoComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },

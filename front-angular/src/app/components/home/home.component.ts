@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {Emitters} from '../emitter/emitter';
+import {Emitters} from '../../emitter/emitter';
 
 @Component({
   selector: 'app-home',

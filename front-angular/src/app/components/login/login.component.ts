@@ -28,6 +28,6 @@ export class LoginComponent implements OnInit {
   submit(): void {
     this.http.post('http://localhost:3000/api/auth/login', this.form.getRawValue(), {
       withCredentials: true
-    }).subscribe(() => this.router.navigate(['/']));
+    }).subscribe(() => this.router.navigate(['/home']));
   }
 }

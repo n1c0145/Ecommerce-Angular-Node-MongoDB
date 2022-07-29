@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
     res.status(201);
     res.json({ status: "Created" });
   } catch (error) {
-    res.status(500).send({message:'error'});
+    res.status(500).send({ message: "error" });
   }
 });
 
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     const productos = await Producto.find();
     res.json(productos);
   } catch (error) {
-    res.status(500).send({message:'error'});
+    res.status(500).send({ message: "error" });
   }
 });
 
@@ -29,15 +29,16 @@ router.get("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const { nombre, categoria, ubicacion, precio } = req.body;
+    const { nombre, precio, descripcion, categoria, imagen } = req.body;
     let producto = await Producto.findById(req.params.id);
     if (!producto) {
       res.status(404).json({ msg: "No existe el producto" });
     }
     producto.nombre = nombre;
-    producto.categoria = categoria;
-    producto.ubicacion = ubicacion;
     producto.precio = precio;
+    producto.descripcion = descripcion;
+    producto.categoria = categoria;
+    producto.imagen = imagen;
 
     producto = await Producto.findOneAndUpdate(
       { _id: req.params.id },
@@ -47,7 +48,7 @@ router.put("/:id", async (req, res) => {
     res.status(200);
     res.json({ status: "Updated" });
   } catch (error) {
-    res.status(500).send({message:'error'});
+    res.status(500).send({ message: "error" });
   }
 });
 
@@ -62,7 +63,7 @@ router.get("/:id", async (req, res) => {
     res.status(200);
     res.json(producto);
   } catch (error) {
-    res.status(500).send({message:'error'});
+    res.status(500).send({ message: "error" });
   }
 });
 
@@ -76,8 +77,9 @@ router.delete("/:id", async (req, res) => {
     }
     await Producto.findOneAndRemove({ _id: req.params.id });
     res.status(200);
-    res.json({ status: "Deleted" });  } catch (error) {
-    res.status(500).send({message:'error'});
+    res.json({ status: "Deleted" });
+  } catch (error) {
+    res.status(500).send({ message: "error" });
   }
 });
 

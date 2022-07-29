@@ -28,6 +28,33 @@
             </div>
             <div class="mb-3">
               <input
+                type="number"
+                formControlName="precio"
+                class="form-control form-control-lg"
+                placeholder="Precio"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  productoForm.get('precio')?.hasError('required')&&productoForm.get('precio')?.touched">
+                <span>El precio <strong>es obligatorio</strong></span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                formControlName="descripcion"
+                class="form-control form-control-lg"
+                placeholder="Descripcion"
+              />
+              <div
+                class="text-danger"
+                *ngIf="productoForm.get('descripcion')?.hasError('required')&&productoForm.get('descripcion')?.touched">
+                <span>La descripcion <strong>es obligatoria</strong></span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input
                 type="text"
                 formControlName="categoria"
                 class="form-control form-control-lg"
@@ -42,28 +69,14 @@
             <div class="mb-3">
               <input
                 type="text"
-                formControlName="ubicacion"
+                formControlName="imagen"
                 class="form-control form-control-lg"
-                placeholder="Ubicacion"
+                placeholder="imagen"
               />
               <div
                 class="text-danger"
-                *ngIf="productoForm.get('ubicacion')?.hasError('required') &&productoForm.get('ubicacion')?.touched">
-                <span>La ubicacion <strong>es obligatoria</strong></span>
-              </div>
-            </div>
-            <div class="mb-3">
-              <input
-                type="number"
-                formControlName="precio"
-                class="form-control form-control-lg"
-                placeholder="Precio"
-              />
-              <div
-                class="text-danger"
-                *ngIf="
-                  productoForm.get('precio')?.hasError('required')&&productoForm.get('precio')?.touched">
-                <span>El precio <strong>es obligatorio</strong></span>
+                *ngIf="productoForm.get('imagen')?.hasError('required') &&productoForm.get('imagen')?.touched">
+                <span>La imagen <strong>es obligatoria</strong></span>
               </div>
             </div>
             <div class="mb-3">

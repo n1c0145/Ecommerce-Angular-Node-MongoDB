@@ -24,9 +24,10 @@ export class CrearProductoComponent implements OnInit {
   ) {
     this.productoForm = this.fb.group({
       producto: ['', Validators.required],
-      categoria: ['', Validators.required],
-      ubicacion: ['', Validators.required],
       precio: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      categoria: ['', Validators.required],
+      imagen: ['', Validators.required],
     });
     //Obtener id
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -39,9 +40,10 @@ export class CrearProductoComponent implements OnInit {
   agregarProducto() {
     const PRODUCTO: Producto = {
       nombre: this.productoForm.get('producto')?.value,
-      categoria: this.productoForm.get('categoria')?.value,
-      ubicacion: this.productoForm.get('ubicacion')?.value,
       precio: this.productoForm.get('precio')?.value,
+      descripcion: this.productoForm.get('descripcion')?.value,
+      categoria: this.productoForm.get('categoria')?.value,
+      imagen: this.productoForm.get('imagen')?.value,
     };
 
     if (this.id !== null) {
@@ -51,13 +53,13 @@ export class CrearProductoComponent implements OnInit {
             'El producto fue actualizado!',
             'Producto Actualizado!'
           );
-          this.router.navigate(['/']);
+          this.router.navigate(['/listar-producto']);
         },
         (error) => {
           console.log(error);
           this.productoForm.reset();
         }
-      )
+      );
     } else {
       console.log(PRODUCTO);
       this._productoService.guardarProducto(PRODUCTO).subscribe(
@@ -66,7 +68,7 @@ export class CrearProductoComponent implements OnInit {
             'El producto fue registrado con exito!',
             'Producto Registrado!'
           );
-          this.router.navigate(['/']);
+          this.router.navigate(['/listar-producto']);
         },
         (error) => {
           console.log(error);
@@ -82,9 +84,10 @@ export class CrearProductoComponent implements OnInit {
       this._productoService.obtenerProducto(this.id).subscribe((data) => {
         this.productoForm.setValue({
           producto: data.nombre,
-          categoria: data.categoria,
-          ubicacion: data.ubicacion,
           precio: data.precio,
+          descripcion: data.descripcion,
+          categoria: data.categoria,
+          imagen: data.imagen,
         });
       });
     }

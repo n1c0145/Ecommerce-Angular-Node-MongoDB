@@ -15,6 +15,9 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="authenticated">
         <li class="nav-item">
+          <a routerLink="/listar-producto" class="nav-link">Productos</a>
+        </li>
+        <li class="nav-item">
           <a routerLink="/login" class="nav-link" (click)="logout()">Logout</a>
         </li>
       </ul>

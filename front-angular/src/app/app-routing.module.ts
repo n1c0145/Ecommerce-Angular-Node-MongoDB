@@ -1,3 +1,4 @@
+import { CartComponent } from './components/cart/cart.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'listar-producto', component: ListarProductosComponent },
   { path: 'crear-producto', component: CrearProductoComponent },
   { path: 'editar-producto/:id', component: CrearProductoComponent },
+  { path: 'cart', component: CartComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

@@ -11,12 +11,15 @@ import { Emitters } from '../../emitter/emitter';
 })
 export class HomeComponent implements OnInit {
   public productList: any;
+  public filterCategory: any;
+  searchKey: string = '';
   message = '';
 
   constructor(
     private http: HttpClient,
     private _productoService: ProductoService,
-    private cartService : CartService  ) {}
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.http
@@ -34,12 +37,23 @@ export class HomeComponent implements OnInit {
 
     this._productoService.getProductos().subscribe((res) => {
       this.productList = res;
-      this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1,total:a.precio});
+      this.filterCategory = res;
+      this.productList.forEach((a: any) => {
+        Object.assign(a, { quantity: 1, total: a.precio });
       });
     });
+    this.cartService.search.subscribe((val: any) => {
+      this.searchKey = val;
+    });
   }
-  addtocart(item: any){
+  addtocart(item: any) {
     this.cartService.addtoCart(item);
+  }
+  filter(categoria: string) {
+    this.filterCategory = this.productList.filter((a: any) => {
+      if (a.categoria == categoria || categoria == '') {
+        return a;
+      }
+    });
   }
 }

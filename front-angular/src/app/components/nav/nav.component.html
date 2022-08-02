@@ -15,15 +15,23 @@
       </ul>
 
       <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="authenticated">
-        <input type="text" class="form-control" placeholder="search products" />
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (keyup)="search($event)"
+          placeholder="search products"
+        />
         <i class="fa-solid fa-magnifying-glass text-white fs-4 mt-2"></i>
         <div>
           <button routerLink="cart" class="btn btn-primary">
             <i style="font-size: 30px" class="fas fa-cart-plus"></i>
-            <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+            <div style="font-size: 10px" class="badge bg-danger">
+              {{ totalItem }}
+            </div>
           </button>
         </div>
-  
+
         <li class="nav-item">
           <a routerLink="/listar-producto" class="nav-link">Productos</a>
         </li>

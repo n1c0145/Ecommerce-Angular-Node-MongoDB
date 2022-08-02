@@ -2,6 +2,8 @@ import { CartService } from './../../services/cart.service';
 import { Emitters } from '../../emitter/emitter';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FilterPipe } from '../../pipe/filter.pipe';
+
 
 @Component({
   selector: '[app-nav]',
@@ -12,7 +14,8 @@ export class NavComponent implements OnInit {
   
   authenticated = false;
   public totalItem : number = 0;
-  
+  public searchTerm !: string;
+
   constructor(private http: HttpClient,private cartService : CartService) {
   }
 
@@ -31,5 +34,8 @@ export class NavComponent implements OnInit {
     this.http.post('http://localhost:3000/api/auth/logout', {}, {withCredentials: true})
       .subscribe(() => this.authenticated = false);
   }
-
+ search(event:any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.cartService.search.next(this.searchTerm);
+  }
 }

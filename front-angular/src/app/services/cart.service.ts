@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class CartService {
   public cartItemList : any =[]
   public productList = new BehaviorSubject<any>([]);
+  public search = new BehaviorSubject<string>("");
   constructor() { }
   getProducts(){
     return this.productList.asObservable();
@@ -29,7 +30,7 @@ export class CartService {
   }
   removeCartItem(product: any){
     this.cartItemList.map((a:any, index:any)=>{
-      if(product.id=== a.id){
+      if(product._id=== a._id){
         this.cartItemList.splice(index,1);
       }
     })

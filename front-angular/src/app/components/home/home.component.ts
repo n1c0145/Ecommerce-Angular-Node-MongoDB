@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -14,8 +15,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private _productoService: ProductoService
-  ) {}
+    private _productoService: ProductoService,
+    private cartService : CartService  ) {}
 
   ngOnInit(): void {
     this.http
@@ -33,8 +34,12 @@ export class HomeComponent implements OnInit {
 
     this._productoService.getProductos().subscribe((res) => {
       this.productList = res;
-      console.log(res);
+      this.productList.forEach((a:any) => {
+        Object.assign(a,{quantity:1,total:a.precio});
+      });
     });
   }
-  
+  addtocart(item: any){
+    this.cartService.addtoCart(item);
+  }
 }

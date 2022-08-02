@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { Emitters } from '../../emitter/emitter';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   
   authenticated = false;
+  public totalItem : number = 0;
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private cartService : CartService) {
   }
 
   ngOnInit(): void {
@@ -20,6 +22,9 @@ export class NavComponent implements OnInit {
         this.authenticated = auth;
       }
     );
+    this.cartService.getProducts().subscribe(res=>{
+      this.totalItem = res.length
+    })
   }
 
   logout(): void {

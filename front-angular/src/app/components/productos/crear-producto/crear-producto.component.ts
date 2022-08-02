@@ -61,7 +61,7 @@ export class CrearProductoComponent implements OnInit {
         }
       );
     } else {
-      console.log(PRODUCTO);
+
       this._productoService.guardarProducto(PRODUCTO).subscribe(
         (data) => {
           this.toastr.success(

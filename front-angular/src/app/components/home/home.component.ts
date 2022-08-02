@@ -1,8 +1,11 @@
+
 import { CartService } from './../../services/cart.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Emitters } from '../../emitter/emitter';
+import { ToastrService} from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-home',
@@ -13,12 +16,12 @@ export class HomeComponent implements OnInit {
   public productList: any;
   public filterCategory: any;
   searchKey: string = '';
-  message = '';
 
   constructor(
     private http: HttpClient,
     private _productoService: ProductoService,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -26,11 +29,12 @@ export class HomeComponent implements OnInit {
       .get('http://localhost:3000/api/auth/user', { withCredentials: true })
       .subscribe(
         (res: any) => {
-          this.message = `Hi ${res.name}`;
+          this.toastr.success(`Bienvenido ${res.name}`,"Sesion Iniciada",{timeOut:1500})
+          
           Emitters.authEmitter.emit(true);
         },
         (err) => {
-          this.message = 'You are not logged in';
+          this.toastr.error("No tienes permiso","Inicia Sesion")
           Emitters.authEmitter.emit(false);
         }
       );
@@ -47,6 +51,7 @@ export class HomeComponent implements OnInit {
     });
   }
   addtocart(item: any) {
+    this.toastr.info('Producto añadido');
     this.cartService.addtoCart(item);
   }
   filter(categoria: string) {

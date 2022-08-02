@@ -14,7 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CartComponent } from './components/cart/cart.component';
-import { InicioComponent } from './components/inicio/inicio.component';
+import { FilterPipe } from './pipe/filter.pipe';
+
 
 
 @NgModule({
@@ -27,8 +28,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
     RegistroComponent,
     NavComponent,
     CartComponent,
-    InicioComponent
-  ],
+    FilterPipe
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,

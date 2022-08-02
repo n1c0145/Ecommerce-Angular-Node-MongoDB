@@ -1,5 +1,4 @@
 import { CartComponent } from './components/cart/cart.component';
-import { InicioComponent } from './components/inicio/inicio.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -9,8 +8,7 @@ import { CrearProductoComponent } from './components/productos/crear-producto/cr
 import { ListarProductosComponent } from './components/productos/listar-productos/listar-productos.component';
 
 const routes: Routes = [
-  {path: '', component: InicioComponent},
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'home', component: HomeComponent},
   { path: 'listar-producto', component: ListarProductosComponent },

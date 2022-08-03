@@ -1,1 +1,1 @@
-Ecommerce-Angular-Node-MongoDB JWT Authentication
+Ecommerce-Angular-Node-MongoDB + JWT Authentication + Shopping cart

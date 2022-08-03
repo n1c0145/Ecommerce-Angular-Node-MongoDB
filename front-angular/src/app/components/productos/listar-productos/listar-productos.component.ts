@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../services/producto.service';
-import { Producto } from '../../models/producto';
+import { ProductoService } from '../../../services/producto.service';
+import { Producto } from '../../../models/producto';
 
 @Component({
   selector: 'app-listar-productos',

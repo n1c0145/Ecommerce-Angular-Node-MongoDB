@@ -6,13 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from "@angular/common/http";
+import { FilterPipe } from './pipe/filter.pipe';
 //components
-import { CrearProductoComponent } from './productos/crear-producto/crear-producto.component';
-import { ListarProductosComponent } from './productos/listar-productos/listar-productos.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { NavComponent } from './nav/nav.component';
+import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
+import { ListarProductosComponent } from './components/productos/listar-productos/listar-productos.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { NavComponent } from './components/nav/nav.component';
+import { CartComponent } from './components/cart/cart.component';
+
+
 
 
 @NgModule({
@@ -23,8 +27,10 @@ import { NavComponent } from './nav/nav.component';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
-    NavComponent
-  ],
+    NavComponent,
+    CartComponent,
+    FilterPipe
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
